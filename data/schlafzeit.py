@@ -119,16 +119,16 @@ schlafzeitenK = [schlafzeit1k, schlafzeit2k,schlafzeit3k,schlafzeit4k,schlafzeit
 
 
 
-# df = pd.read_excel('./ToDoSchlafZeit/output_'+ 'ahn' +'.xlsx')
-# df = pd.read_excel('./ToDoSchlafZeit/output_'+ 'Zahra' +'.xlsx')
+# df = pd.read_excel('./output_'+ 'ahn' +'.xlsx')
+# df = pd.read_excel('./output_'+ 'Zahra' +'.xlsx')
 
 def write_all(arr,name):
-    df = pd.read_excel('./ToDoSchlafZeit/output_'+ name +'.xlsx')
+    df = pd.read_excel('data\interpolation_outputs\output_' + name + '.xlsx')
     for schlafzeit in schlafzeitenK:
        # print(f"Name: {schlafzeit.name}, date: {schlafzeit.date}, dauer_vortag: {schlafzeit.dauer_vortag}")
        write_schlafzeit(df,schlafzeit.name,schlafzeit.date,schlafzeit.dauer_vortag)
     df.to_csv('output_'+name+'_schlaf.csv', index=False)
 
-write_all(schlafzeitenZ,'khang')
+write_all(schlafzeitenZ,'anh')
 
 
