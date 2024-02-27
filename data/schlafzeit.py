@@ -61,7 +61,7 @@ class Schlafzeit:
 
 # Creating instances of the Person class
 schlafzeit1z = Schlafzeit("Zahra", "2024-01-24", 7.5)
-schlafzeit2z = Schlafzeit("Zahra", "2024-01-25",7.3)
+schlafzeit2z = Schlafzeit("Zahra", "2024-01-25",8.3)
 schlafzeit3z = Schlafzeit("Zahra", "2024-01-26",8)
 schlafzeit4z = Schlafzeit("Zahra", "2024-01-27",8)
 schlafzeit5z = Schlafzeit("Zahra", "2024-01-28",7.5)
@@ -79,21 +79,21 @@ schlafzeitenZ = [schlafzeit1z, schlafzeit2z,schlafzeit3z,schlafzeit4z,schlafzeit
 
 
 schlafzeit1a = Schlafzeit("ahn", "2024-01-24", 8)
-schlafzeit2a = Schlafzeit("ahn", "2024-01-25",7)
+schlafzeit2a = Schlafzeit("ahn", "2024-01-25",6.8)
 schlafzeit3a = Schlafzeit("ahn", "2024-01-26",7.5)
 schlafzeit4a = Schlafzeit("ahn", "2024-01-27",6.3)
-schlafzeit5a = Schlafzeit("ahn", "2024-01-28",9)
-schlafzeit6a = Schlafzeit("ahn", "2024-01-29",8)
+schlafzeit5a = Schlafzeit("ahn", "2024-01-28",9.3)
+schlafzeit6a = Schlafzeit("ahn", "2024-01-29",8.2)
 schlafzeit7a = Schlafzeit("ahn", "2024-01-30",8.5)
-schlafzeit8a = Schlafzeit("ahn", "2024-01-31",6)
-schlafzeit9a = Schlafzeit("ahn", "2024-02-01",7.5)
-schlafzeit10a = Schlafzeit("ahn", "2024-02-02",8.25)
-schlafzeit11a = Schlafzeit("ahn", "2024-02-03",5.5)
-schlafzeit12a = Schlafzeit("ahn", "2024-02-04",7.75)
+schlafzeit8a = Schlafzeit("ahn", "2024-01-31",6.2)
+schlafzeit9a = Schlafzeit("ahn", "2024-02-01",7.4)
+schlafzeit10a = Schlafzeit("ahn", "2024-02-02",8.3)
+schlafzeit11a = Schlafzeit("ahn", "2024-02-03",5.4)
+schlafzeit12a = Schlafzeit("ahn", "2024-02-04",7.8)
 schlafzeit13a = Schlafzeit("ahn", "2024-02-05",8.5)
 schlafzeit14a = Schlafzeit("ahn", "2024-02-06",7.5)
-schlafzeit15a = Schlafzeit("ahn", "2024-02-07",8)
-schlafzeit16a = Schlafzeit("ahn", "2024-02-08",9)
+schlafzeit15a = Schlafzeit("ahn", "2024-02-07",7.9)
+schlafzeit16a = Schlafzeit("ahn", "2024-02-08",8.8)
 
 
 
