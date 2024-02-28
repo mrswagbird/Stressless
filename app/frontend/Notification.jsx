@@ -1,9 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-import { StatusBar } from "expo-status-bar";
 import { Pressable, Text, View, Platform, StyleSheet } from "react-native";
-import { Button } from "react-native-web";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 
@@ -83,16 +81,20 @@ export default function Notification() {
     });
   };
   return (
-    <View>
-      <Pressable
-        style={{
-          marginTop: 500,
-          textAlign: "center",
-          justifyContent: "center",
-        }}
-        onPress={sendNotification}
-      >
-        <Text>Track data</Text>
+    <View
+      style={{
+        marginTop: 100,
+        alignItems: "center",
+      }}
+    >
+      <Pressable onPress={sendNotification}>
+        <Text
+          style={{
+            marginVertical: 30,
+          }}
+        >
+          Click here to test the notification
+        </Text>
       </Pressable>
     </View>
   );
