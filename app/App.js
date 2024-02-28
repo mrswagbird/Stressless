@@ -1,8 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-// import { createNativeStackNavigator } from "@react-navigation/stack";
 import { createStackNavigator } from "@react-navigation/stack";
-import Landing_page from "./frontend/Landing_page";
+import LandingPage from "./frontend/Landing_page";
 import UserInput from "./frontend/UserInput_page";
 import Suggestions from "./frontend/Suggestions_page";
 import Report from "./frontend/Report_page";
@@ -16,10 +15,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Landing_page />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="LandingPage">
-          <Stack.Screen name="LandingPage" component={Landing_page} />
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={LandingPage} />
           <Stack.Screen name="UserInput" component={UserInput} />
           <Stack.Screen name="Suggestions" component={Suggestions} />
           <Stack.Screen name="Report" component={Report} />
@@ -31,9 +29,9 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
+    display: "flex",
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "center",
   },
 });

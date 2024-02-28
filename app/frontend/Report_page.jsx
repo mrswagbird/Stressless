@@ -1,11 +1,27 @@
+import { View, Text, StyleSheet } from 'react-native';
+
 export default function Report() {
     return (
-        <div>
-        <h1>Welcome to the Report Page</h1>
-        <p>
-            This is the report page for the app. It will contain a brief
+        <View style={styles.container}>
+        <Text style={styles.heading}>Welcome to the Stress Report Page</Text>
+        <Text>
+            This is the stress report page for the app. It will contain a brief
             description of the app and a button to start the app.
-        </p>
-        </div>
+        </Text>
+        </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 16,
+    },
+    heading: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginBottom: 16,
+    },
+  });
