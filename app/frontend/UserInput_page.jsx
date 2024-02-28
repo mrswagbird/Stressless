@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Picker, Button, Alert } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Button, Alert } from 'react-native';
+import { Picker} from '@react-native-picker/picker'
 
 export default function UserInput() {
-  const [heartRate, setHeartRate] = useState('');
+  const [heartRate, setHeartRate] = useState("");
   const [sleepDuration, setSleepDuration] = useState('');
-  const [activity, setActivity] = useState('Other'); 
+  const [activity, setActivity] = useState(''); 
 
   const handleSubmit = () => {
     // Calculate a random stress level between 0 and 5 (as a placeholder)
@@ -46,6 +47,7 @@ export default function UserInput() {
           <Picker.Item label="Hobby" value="Hobby" />
           <Picker.Item label="Social" value="Social" />
           <Picker.Item label="Other" value="Other" />
+          <Picker.Item label="" value="" />
         </Picker>
       </View>
       <View style={styles.inputContainer}>
@@ -81,7 +83,6 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     marginBottom: 16,
-    width: 500,
   },
   heading: {
     fontSize: 24,

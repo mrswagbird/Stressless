@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 16,
+    marginBottom: 100,
   },
     buttonContainer: {
     },
