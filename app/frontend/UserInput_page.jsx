@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, StyleSheet, Picker, Button, Alert } from 'react-native';
+import * as tf from '@tensorflow/tfjs';
+import {bundleResourceIO} from "@tensorflow/tfjs-react-native";
 
 export default function UserInput() {
   const [heartRate, setHeartRate] = useState('');
