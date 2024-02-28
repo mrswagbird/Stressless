@@ -8,25 +8,25 @@ export default function UserInput() {
 
   const handleSubmit = () => {
     // Calculate a random stress level between 0 and 5 (as a placeholder)
+    if (!heartRate || !sleepDuration || !activity) {
+      Alert.alert('All fields must be filled before submitting.');
+      return;
+    } else {
     const stressLevel = Math.floor(Math.random() * 6);
+    const currentTime = new Date().toLocaleTimeString();
+
     console.log(stressLevel);
     console.log("clicked");
 
-    Alert.alert('Test Alert', 'This is a test alert');
-
-
-    // Display stress level in an alert along with entered values
-    // Alert.alert(
-    //   'Stress Level',
-    //   `Your stress level is: ${stressLevel}\n\nDetails:\nActivity: ${activity}\nSleep Duration: ${sleepDuration}\nHeart Rate: ${heartRate}`
-    // );
-
+    // Display stress level in an alert dialog
+    Alert.alert(
+      `Your stress level is: ${stressLevel}\nTime: ${currentTime}`
+    );
+    }
   };
 
   // const calculateStressLevel = (activity, sleepDuration, heartRate) => {
-  //   // TODO: Implement your stress level calculation logic
-  //   // For now, just return a placeholder value
-  //   return Math.floor(Math.random() * 100);
+  //   // TODO: Implement your stress level calculation logic here
   // };
 
   return (
@@ -67,7 +67,7 @@ export default function UserInput() {
           onChangeText={(text) => setHeartRate(text)}
         />
       </View>
-      <Button title="Submit" onPress={handleSubmit} />
+      <Button style={styles.submitButton} title="Submit" onPress={handleSubmit} />
     </View>
   );
 }
@@ -107,4 +107,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 200,
   },
+  submitButton: {
+    // To Do
+  }
 });
