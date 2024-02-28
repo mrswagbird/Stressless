@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Picker, Button, Alert } from 'react-native';
-import * as tf from '@tensorflow/tfjs';
-import {bundleResourceIO} from "@tensorflow/tfjs-react-native";
 
 export default function UserInput() {
   const [heartRate, setHeartRate] = useState('');
@@ -12,7 +10,6 @@ export default function UserInput() {
     // Calculate a random stress level between 0 and 5 (as a placeholder)
     if (!heartRate || !sleepDuration || !activity) {
       Alert.alert('All fields must be filled before submitting.');
-      return;
     } else {
     const stressLevel = Math.floor(Math.random() * 6);
     const currentTime = new Date().toLocaleTimeString();
