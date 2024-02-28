@@ -3,6 +3,7 @@
     "name": "app",
     "slug": "pushnotification",
     "version": "1.0.0",
+    "permissions": ["internet"],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
