@@ -1,17 +1,46 @@
-// import Button from 'react-bootstrap/Button';
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-export default function Landing_page() {
-    return (
-        <div>
-        <h1>Welcome to the Landing Page</h1>
-        <p>
-            This is the landing page for the app. It will contain a brief
-            description of the app and a button to start the app.
-        </p>
-        {/* <button>Start</button> */}
-        {/* <Button href="/userInput">User Input</Button>
-        <Button href="/suggestions">Suggestions</Button>
-        <Button href="/report">Stress Report</Button> */}
-        </div>
-    );
-    }
+export default function LandingPage({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.heading}>Welcome to StressLess</Text>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="User Input"
+          onPress={() => navigation.navigate('UserInput')}
+          style={styles.button}
+        />
+        <Button
+          title="Suggestions"
+          onPress={() => navigation.navigate('Suggestions')}
+          style={styles.button}
+        />
+        <Button
+          title="Stress Report"
+          onPress={() => navigation.navigate('Report')}
+          style={styles.button}
+        />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+    buttonContainer: {
+    },
+  button: {
+    marginTop: 10,
+    },
+});
