@@ -24,14 +24,13 @@ import reportData20240208 from './Report_data/report_preprocessed_anh_20240208.j
 const screenWidth = Dimensions.get("window").width - 16;
 
 const chartConfig = {
-  // backgroundGradientFrom: "#1E2923",
-  // backgroundGradientFromOpacity: 0,
-  // backgroundGradientTo: "#08130D",
-  // backgroundGradientToOpacity: 0.5,
-  color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-  strokeWidth: 2, // optional, default 3
+  backgroundGradientFrom: "white",
+  backgroundGradientTo: "white",
+  color: (opacity = 1) => `rgba(50, 50, 50, ${opacity})`, // Darker gray data points
+  labelColor: (opacity = 1) => `rgba(50, 50, 50, ${opacity})`, // Darker gray labels
+  strokeWidth: 2,
   barPercentage: 0.5,
-  useShadowColorFromDataset: false, // optional
+  useShadowColorFromDataset: false,
 };
 
 export default function Report() {
@@ -131,9 +130,10 @@ export default function Report() {
       <LineChart
         data={chartData}
         width={screenWidth}
-        height={220}
+        height={300}
         chartConfig={chartConfig}
         bezier
+        verticalLabelRotation={90} // Rotate labels horizontally
       />
     </View>
   );
