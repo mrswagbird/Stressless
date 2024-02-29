@@ -1,44 +1,77 @@
-import React, {useEffect, useState} from 'react';
-import { View, Text, TextInput, StyleSheet, Button, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import SelectDropdown from 'react-native-select-dropdown'
-import * as tf from "@tensorflow/tfjs"
-import {bundleResourceIO} from "@tensorflow/tfjs-react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Button,
+  Alert,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
+import * as tf from "@tensorflow/tfjs";
+import { bundleResourceIO } from "@tensorflow/tfjs-react-native";
 
-export default function UserInput() {
+export default function UserInput({ navigation }) {
   const [heartRate, setHeartRate] = useState("");
-  const [sleepDuration, setSleepDuration] = useState('');
-  const [activity, setActivity] = useState('');
+  const [sleepDuration, setSleepDuration] = useState("");
+  const [activity, setActivity] = useState("");
   const [model, setModel] = useState(false);
+
+  const [tfReady, setTfReady] = useState(false);
 
   useEffect(() => {
     async function prepare() {
       await tf.ready();
-      const modelJson = require('../model/model.json');
-      const modelWeights = require('../model/group1-shard1of1.bin');
+      const modelJson = require("../model/model.json");
+      const modelWeights = require("../model/group1-shard1of1.bin");
 
-      const model = await tf.loadLayersModel(bundleResourceIO(modelJson, [modelWeights]));
-
+      const model = await tf.loadLayersModel(
+        bundleResourceIO(modelJson, [modelWeights])
+      );
+      setTfReady(true);
       setModel(model);
-      console.warn("TF now ready!")
+      console.warn("TF now ready!");
     }
     prepare();
-  }, [])
+  }, []);
+
+  const predict = () => {
+    return 3;
+  };
 
   const handleSubmit = () => {
     // Calculate a random stress level between 0 and 5 (as a placeholder)
     if (!heartRate || !sleepDuration || !activity) {
-      Alert.alert('All fields must be filled before submitting.');
+      Alert.alert("All fields must be filled before submitting.");
     } else {
-    const stressLevel = Math.floor(Math.random() * 6);
-    const currentTime = new Date().toLocaleTimeString();
+      const stresslevel = predict();
 
-    console.log(stressLevel);
-    console.log("clicked");
+      if (stresslevel >= 2) {
+        Alert.alert(
+          "Confirmation",
+          `Your stress level is  ${stresslevel}, you need some relaxation`,
 
-    // Display stress level in an alert dialog
-    Alert.alert(
-      `Your stress level is: ${stressLevel}\nTime: ${currentTime}`
-    );
+          [
+            {
+              text: "Cancel",
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: () => {
+                navigation.navigate("Suggestions");
+              },
+            },
+          ],
+          { cancelable: false }
+        );
+      } else {
+        Alert.alert(
+          `You are doing good, you stress level is only ${stresslevel}`
+        );
+      }
     }
   };
 
@@ -50,40 +83,47 @@ export default function UserInput() {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-    <View style={styles.container}>
-      <Text style={styles.description}>
-        To assist our stress prediction model, please provide the following details. Please note that this input is for demonstration purposes only.
-      </Text>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Activity:</Text>
-        <SelectDropdown
-          data={activityOptions}
-          onSelect={(selectedItem) => setActivity(selectedItem)}
-          buttonTextAfterSelection={(selectedItem) => selectedItem}
-          rowTextForSelection={(item) => item}
+      <View style={styles.container}>
+        <Text style={styles.description}>
+          To assist our stress prediction model, please provide the following
+          details. Please note that this input is for demonstration purposes
+          only.
+        </Text>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Activity:</Text>
+          <SelectDropdown
+            data={activityOptions}
+            onSelect={(selectedItem) => setActivity(selectedItem)}
+            buttonTextAfterSelection={(selectedItem) => selectedItem}
+            rowTextForSelection={(item) => item}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Sleep duration:</Text>
+          <TextInput
+            style={styles.input}
+            keyboardType="numeric"
+            value={sleepDuration}
+            onChangeText={(text) => setSleepDuration(text)}
+            returnKeyType="next"
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Heart Rate:</Text>
+          <TextInput
+            style={styles.input}
+            keyboardType="numeric"
+            value={heartRate}
+            onChangeText={(text) => setHeartRate(text)}
+          />
+        </View>
+
+        <Button
+          style={styles.submitButton}
+          title="Submit"
+          onPress={handleSubmit}
         />
       </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Sleep duration:</Text>
-        <TextInput
-          style={styles.input}
-          keyboardType="numeric"
-          value={sleepDuration}
-          onChangeText={(text) => setSleepDuration(text)}
-          returnKeyType='next'
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Heart Rate:</Text>
-        <TextInput
-          style={styles.input}
-          keyboardType="numeric"
-          value={heartRate}
-          onChangeText={(text) => setHeartRate(text)}
-        />
-      </View>
-      <Button style={styles.submitButton} title="Submit" onPress={handleSubmit} />
-    </View>
     </TouchableWithoutFeedback>
   );
 }
@@ -91,17 +131,18 @@ export default function UserInput() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 16,
   },
+
   description: {
     fontSize: 16,
     marginBottom: 16,
   },
   heading: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 16,
   },
   inputContainer: {
@@ -113,7 +154,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderWidth: 1,
     padding: 8,
     width: 200,
@@ -124,5 +165,5 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     // To Do
-  }
+  },
 });
