@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import * as tf from "@tensorflow/tfjs";
-import { bundleResourceIO } from "@tensorflow/tfjs-react-native";
+// import { bundleResourceIO } from "@tensorflow/tfjs-react-native";
 
 export default function UserInput({ navigation }) {
   const [heartRate, setHeartRate] = useState("");
