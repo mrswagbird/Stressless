@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Button, Alert } from 'react-native';
-import { Picker} from '@react-native-picker/picker'
+import { View, Text, TextInput, StyleSheet, Button, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import SelectDropdown from 'react-native-select-dropdown'
 
 export default function UserInput() {
   const [heartRate, setHeartRate] = useState("");
@@ -29,26 +29,22 @@ export default function UserInput() {
   //   // TODO: Implement your stress level calculation logic here
   // };
 
+  const activityOptions = ["Uni", "Work", "Hobby", "Social", "Other"];
+
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <View style={styles.container}>
-      <Text style={styles.heading}>User Input</Text>
       <Text style={styles.description}>
         To assist our stress prediction model, please provide the following details. Please note that this input is for demonstration purposes only.
       </Text>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Activity:</Text>
-        <Picker
-          selectedValue={activity}
-          onValueChange={(itemValue) => setActivity(itemValue)}
-          style={styles.picker}
-        >
-          <Picker.Item label="Uni" value="Uni" />
-          <Picker.Item label="Work" value="Work" />
-          <Picker.Item label="Hobby" value="Hobby" />
-          <Picker.Item label="Social" value="Social" />
-          <Picker.Item label="Other" value="Other" />
-          <Picker.Item label="" value="" />
-        </Picker>
+        <SelectDropdown
+          data={activityOptions}
+          onSelect={(selectedItem) => setActivity(selectedItem)}
+          buttonTextAfterSelection={(selectedItem) => selectedItem}
+          rowTextForSelection={(item) => item}
+        />
       </View>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Sleep duration:</Text>
@@ -57,6 +53,7 @@ export default function UserInput() {
           keyboardType="numeric"
           value={sleepDuration}
           onChangeText={(text) => setSleepDuration(text)}
+          returnKeyType='next'
         />
       </View>
       <View style={styles.inputContainer}>
@@ -70,6 +67,7 @@ export default function UserInput() {
       </View>
       <Button style={styles.submitButton} title="Submit" onPress={handleSubmit} />
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 
