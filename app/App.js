@@ -6,6 +6,7 @@ import UserInput from "./frontend/UserInput_page";
 import Suggestions from "./frontend/Suggestions_page";
 import Report from "./frontend/Report_page";
 import Notification from "./frontend/Notification";
+import CalenderContainer from "./frontend/CalenderContainer";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 // import loadCSV from "./model/model";
@@ -23,6 +24,10 @@ export default function App() {
           <Stack.Screen name="Suggestions" component={Suggestions} />
           <Stack.Screen name="Report" component={Report} />
           <Stack.Screen name="Notification" component={Notification} />
+          <Stack.Screen
+            name="CalenderContainer"
+            component={CalenderContainer}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

@@ -26,6 +26,11 @@ export default function LandingPage({ navigation }) {
           onPress={() => navigation.navigate("Notification")}
           style={styles.button}
         />
+        <Button
+          title="Fetch Calender Test"
+          onPress={() => navigation.navigate("CalenderContainer")}
+          style={styles.button}
+        />
       </View>
     </View>
   );
