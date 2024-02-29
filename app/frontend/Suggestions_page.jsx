@@ -4,18 +4,16 @@ import * as Contacts from "expo-contacts";
 export default function Suggestions() {
   const openYoutube = () => {
     console.log("youtube");
-    Linking.openURL(
-      "https://www.youtube.com/results?search_query=funny+videos"
-    ).catch((err) => {
-      console.error(
-        "Failed to open YouTube app. Opening in browser instead.",
-        err
-      );
-      // Fallback to opening in the browser
-      Linking.openURL(
-        "https://www.youtube.com/results?search_query=funny+videos"
-      );
-    });
+    Linking.openURL("https://www.youtube.com/watch?v=S4hLxf02Ong").catch(
+      (err) => {
+        console.error(
+          "Failed to open YouTube app. Opening in browser instead.",
+          err
+        );
+        // Fallback to opening in the browser
+        Linking.openURL("https://www.youtube.com/watch?v=S4hLxf02Ong");
+      }
+    );
   };
   const open9gag = () => {
     console.log("9gag");
@@ -73,7 +71,7 @@ export default function Suggestions() {
       <Text style={styles.heading}>Do something to relax</Text>
       <View style={styles.buttonContainer}>
         <Button
-          title="Watch some videos!"
+          title="Take some time to breath out!"
           onPress={openYoutube}
           style={styles.button}
         />

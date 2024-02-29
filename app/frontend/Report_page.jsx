@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { LineChart } from 'react-native-chart-kit';
-import moment from 'moment';
-import jsonData from '../../data/preprocessing/report_preprocessed_anh.json';
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { LineChart } from "react-native-chart-kit";
+import moment from "moment";
+//import jsonData from '../../data/preprocessing/report_preprocessed_anh.json';
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -13,9 +13,9 @@ const data = {
       data: [20, 45, 28, 80, 99, 43],
       color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
       // strokeWidth: 2 // optional
-    }
+    },
   ],
-  legend: ["Rainy Days"] // optional
+  legend: ["Rainy Days"], // optional
 };
 
 const chartConfig = {
@@ -45,7 +45,7 @@ export default function Report() {
         // Import the JSON data directly
         // const jsonData = require('../../data/preprocessing/report_preprocessed_anh.json');
         const labels = jsonData.map((row) =>
-          moment(row.datetime).format('YYYY-MM-DD HH:mm:ss')
+          moment(row.datetime).format("YYYY-MM-DD HH:mm:ss")
         );
 
         const stressData = jsonData.map((row) => parseFloat(row.stress_lvl));
@@ -59,7 +59,7 @@ export default function Report() {
           ],
         });
       } catch (error) {
-        console.error('Error reading JSON file for Stress Report:', error);
+        console.error("Error reading JSON file for Stress Report:", error);
       }
     };
 
@@ -85,15 +85,15 @@ export default function Report() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 16,
-    },
-    heading: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 16,
-    },
-  });
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 16,
+  },
+});
