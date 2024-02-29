@@ -28,9 +28,10 @@ const chartConfig = {
   backgroundGradientTo: "white",
   color: (opacity = 1) => `rgba(50, 50, 50, ${opacity})`, // Darker gray data points
   labelColor: (opacity = 1) => `rgba(50, 50, 50, ${opacity})`, // Darker gray labels
-  strokeWidth: 2,
+  strokeWidth: 3,
   barPercentage: 0.5,
   useShadowColorFromDataset: false,
+  alignItems: 'center',
 };
 
 export default function Report() {
@@ -127,7 +128,9 @@ export default function Report() {
         buttonTextAfterSelection={(selectedItem, index) => selectedItem.label}
         rowTextForSelection={(item, index) => item.label}
       />
+      <View style={styles.lineChartContainer}>
       <LineChart
+      style={styles.lineChart}
         data={chartData}
         width={screenWidth}
         height={300}
@@ -135,6 +138,7 @@ export default function Report() {
         bezier
         verticalLabelRotation={90} // Rotate labels horizontally
       />
+      </View>
     </View>
   );
 }
@@ -142,7 +146,7 @@ export default function Report() {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
+      justifyContent: "flex-start",
       alignItems: 'center',
       padding: 16,
     },
@@ -154,6 +158,23 @@ const styles = StyleSheet.create({
     picker: {
       marginTop: 16,
       marginBottom: 16,
-
     },
+    lineChartContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 300,
+    },
+    lineChart: {
+      flex: 1,
+      borderRadius: 15,
+      elevation: 5, // Add elevation for drop shadow (Android only)
+      backgroundColor: 'white',
+      alignItems: 'center',
+      justifyContent: 'center',
+    shadowColor: '#d3d3d3',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.34,
+    shadowRadius: 2,
+    }
   });
