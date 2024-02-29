@@ -19,7 +19,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={LandingPage} />
-          <Stack.Screen name="UserInput" component={UserInput} />
+          <Stack.Screen name="User Input" component={UserInput} />
           <Stack.Screen name="Suggestions" component={Suggestions} />
           <Stack.Screen name="Report" component={Report} />
           <Stack.Screen name="Notification" component={Notification} />

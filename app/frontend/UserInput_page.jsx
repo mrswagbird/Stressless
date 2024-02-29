@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Button, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 
 export default function UserInput() {
@@ -32,6 +32,7 @@ export default function UserInput() {
   const activityOptions = ["Uni", "Work", "Hobby", "Social", "Other"];
 
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <View style={styles.container}>
       <Text style={styles.heading}>User Input</Text>
       <Text style={styles.description}>
@@ -53,6 +54,7 @@ export default function UserInput() {
           keyboardType="numeric"
           value={sleepDuration}
           onChangeText={(text) => setSleepDuration(text)}
+          returnKeyType='next'
         />
       </View>
       <View style={styles.inputContainer}>
@@ -66,6 +68,7 @@ export default function UserInput() {
       </View>
       <Button style={styles.submitButton} title="Submit" onPress={handleSubmit} />
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 
