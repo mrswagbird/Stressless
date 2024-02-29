@@ -116,21 +116,22 @@ export default function Report() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Stress Report</Text>
-      <Text>
+      <Text style={styles.description}>
         Please select a date to see your stress levels throughout the day.
       </Text>
       <SelectDropdown
         data={renderDropdownOptions()}
         onSelect={(selectedItem, index) => setSelectedDate(selectedItem.value)}
         defaultButtonText={moment(selectedDate, 'YYYYMMDD').format('YYYY-MM-DD')}
-        buttonStyle={styles.picker}
+        buttonStyle={styles.dropdownBtnStyle}
         buttonTextAfterSelection={(selectedItem, index) => selectedItem.label}
         rowTextForSelection={(item, index) => item.label}
+        dropdownStyle={styles.dropdownStyle} 
+        dropdownTextStyle={styles.dropdownTextStyle} 
       />
       <View style={styles.lineChartContainer}>
       <LineChart
-      style={styles.lineChart}
+        style={styles.lineChart}
         data={chartData}
         width={screenWidth}
         height={300}
@@ -149,14 +150,13 @@ const styles = StyleSheet.create({
       justifyContent: "flex-start",
       alignItems: 'center',
       padding: 16,
+      shadowColor: '#d3d3d3',
+      shadowOffset: { width: 0, height: 5 },
+      shadowOpacity: 0.34,
+      shadowRadius: 2,
     },
-    heading: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 16,
-    },
-    picker: {
-      marginTop: 16,
+    description: {
+      fontSize: 18,
       marginBottom: 16,
     },
     lineChartContainer: {
@@ -172,9 +172,25 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       alignItems: 'center',
       justifyContent: 'center',
-    shadowColor: '#d3d3d3',
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.34,
-    shadowRadius: 2,
-    }
+    },
+    dropdownStyle: {
+      backgroundColor: 'white',
+      borderRadius: 10,
+      borderWidth: 1,
+      borderColor: 'gray',
+    },
+    dropdownBtnStyle: {
+      width: 280,
+      height: 50,
+      borderRadius: 10,
+      borderColor: "gray",
+      borderWidth: 1,
+      backgroundColor: "white",
+      marginTop: 16,
+      marginBottom: 30,
+    },
+    dropdownTextStyle: {
+      paddingHorizontal: 10,
+      paddingVertical: 8,
+    },
   });

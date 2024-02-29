@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Alert, Button, Keyboard, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
+import {Alert, Button, Keyboard, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View, TouchableOpacity} from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 import * as tf from "@tensorflow/tfjs"
 import {bundleResourceIO} from "@tensorflow/tfjs-react-native";
@@ -134,38 +134,55 @@ export default function UserInput({ navigation }) {
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Activity:</Text>
           <SelectDropdown
-          style={styles.picker}
+            defaultButtonText={' '}
+            buttonStyle={styles.dropdownBtnStyle}
             data={activityOptions}
             onSelect={(selectedItem) => setActivity(selectedItem)}
             buttonTextAfterSelection={(selectedItem) => selectedItem}
             rowTextForSelection={(item) => item}
+            dropdownStyle={styles.dropdownStyle} 
+            dropdownTextStyle={styles.dropdownTextStyle} 
           />
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Sleep duration:</Text>
           <TextInput
-            style={styles.input}
+            style={{...styles.input, fontSize: 20, textAlign: 'center'}}
             keyboardType="numeric"
             value={sleepDuration}
-            onChangeText={(text) => setSleepDuration(text)}
+            maxLength={2}
+            onChangeText={(text) => {
+              if (text === '' || (parseInt(text) <= 24 && parseInt(text) >= 0)) {
+              setSleepDuration(text);}
+              }
+            }
             returnKeyType="next"
           />
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Heart Rate:</Text>
           <TextInput
-            style={styles.input}
+            style={{...styles.input, fontSize: 20, textAlign: 'center'}}
             keyboardType="numeric"
             value={heartRate}
-            onChangeText={(text) => setHeartRate(text)}
+            maxLength={3}
+            onChangeText={(text) => {
+              if (text === '' || (parseInt(text) <= 300 && parseInt(text) >= 0)) {
+              setHeartRate(text);}
+              }}
           />
         </View>
 
-        <Button
+        {/* <Button
           style={styles.submitButton}
           title="Submit"
           onPress={handleSubmit}
-        />
+        /> */}
+
+        <TouchableOpacity onPress={handleSubmit} style={styles.button}> 
+          <Text style={styles.textbutton}>Submit</Text>
+        </TouchableOpacity >
+
       </View>
     </TouchableWithoutFeedback>
   );
@@ -178,9 +195,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
   },
-
   description: {
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 16,
   },
   heading: {
@@ -191,31 +207,65 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginVertical: 8,
     borderRadius: 10,
+    shadowColor: '#d3d3d3',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.34,
+    shadowRadius: 2,
   },
   label: {
     fontSize: 18,
     marginBottom: 4,
   },
   input: {
-    height: 40,
+    height: 50,
     borderColor: "gray",
     borderWidth: 1,
     padding: 8,
-    width: 200,
+    width: 280,
     borderRadius: 10,
-    backgroundColor: "bababa",
+    backgroundColor: "white",
+  },
+  button: {
+    width: 280,
+    height: 50,
+    alignItems: "center",
+    marginTop: 20,
+    paddingHorizontal: 10,
+    paddingVertical:15,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: "#007AFF",
+    backgroundColor: "#007AFF",
     shadowColor: '#d3d3d3',
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.34,
     shadowRadius: 2,
   },
-  picker: {
-    height: 40,
-    width: 200,
-    borderRadius: 10,
+  textbutton: {
+    fontSize: 18,
+    color: "white"
   },
   submitButton: {
-    width: 200,
+    width: 280,
+    height: 50,
+  },
+  dropdownBtnStyle: {
+    width: 280,
+    height: 50,
     borderRadius: 10,
+    borderColor: "gray",
+    borderWidth: 1,
+    backgroundColor: "white",
+  },
+  dropdownStyle: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    marginTop: 5,
+  },
+  dropdownTextStyle: {
+    paddingHorizontal: 10,
+    paddingVertical: 8,
   },
 });

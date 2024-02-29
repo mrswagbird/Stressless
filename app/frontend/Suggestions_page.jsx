@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Linking, Button } from "react-native";
 import * as Contacts from "expo-contacts";
+
 export default function Suggestions() {
   const openYoutubeMusic = () => {
     console.log("youtube");
@@ -84,29 +85,37 @@ export default function Suggestions() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Do something to relax</Text>
-      <View style={styles.buttonContainer}>
+      <Text style={styles.description}>It's time to relax! Discover our selection of suggestions that help you find peace and quiet in the chaos of everyday life.</Text>
+      <View>
+        <View style={styles.buttonContainer}>
         <Button
           // title="Take some time to breath out!"
           title="Listen to some relaxing music!"
           onPress={openYoutubeMusic}
           style={styles.button}
         />
+        </View>
+        <View style={styles.buttonContainer}>
         <Button
           title="Take some time to breath out!"
           onPress={openYoutubeYoga}
           style={styles.button}
         />
+        </View>
+        <View style={styles.buttonContainer}>
         <Button
           title="Dive into a world of memes!"
           onPress={open9gag}
           style={styles.button}
         />
+        </View>
+        <View style={styles.buttonContainer}>
         <Button
           title="Ring someone and spread some joy！"
           onPress={callContact}
           style={styles.button}
         />
+        </View>
       </View>
     </View>
   );
@@ -119,12 +128,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
   },
-  heading: {
-    fontSize: 24,
-    fontWeight: "bold",
+  description: {
+    fontSize: 18,
     marginBottom: 16,
   },
-  buttonContainer: {},
+  buttonContainer: {
+    marginBottom: 15, 
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "white",
+    borderRadius: 10,
+    shadowColor: '#d3d3d3',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.34,
+    shadowRadius: 2,
+  },
   button: {
     marginTop: 10,
   },
