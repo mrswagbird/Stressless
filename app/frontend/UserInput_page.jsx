@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Button, Alert } from 'react-native';
-import { Picker} from '@react-native-picker/picker'
+import SelectDropdown from 'react-native-select-dropdown'
 
 export default function UserInput() {
   const [heartRate, setHeartRate] = useState("");
@@ -29,6 +29,8 @@ export default function UserInput() {
   //   // TODO: Implement your stress level calculation logic here
   // };
 
+  const activityOptions = ["Uni", "Work", "Hobby", "Social", "Other"];
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>User Input</Text>
@@ -37,18 +39,12 @@ export default function UserInput() {
       </Text>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Activity:</Text>
-        <Picker
-          selectedValue={activity}
-          onValueChange={(itemValue) => setActivity(itemValue)}
-          style={styles.picker}
-        >
-          <Picker.Item label="Uni" value="Uni" />
-          <Picker.Item label="Work" value="Work" />
-          <Picker.Item label="Hobby" value="Hobby" />
-          <Picker.Item label="Social" value="Social" />
-          <Picker.Item label="Other" value="Other" />
-          <Picker.Item label="" value="" />
-        </Picker>
+        <SelectDropdown
+          data={activityOptions}
+          onSelect={(selectedItem) => setActivity(selectedItem)}
+          buttonTextAfterSelection={(selectedItem) => selectedItem}
+          rowTextForSelection={(item) => item}
+        />
       </View>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Sleep duration:</Text>
