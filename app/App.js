@@ -6,6 +6,7 @@ import UserInput from "./frontend/UserInput_page";
 import Suggestions from "./frontend/Suggestions_page";
 import Report from "./frontend/Report_page";
 import Notification from "./frontend/Notification";
+
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 // import loadCSV from "./model/model";
@@ -18,11 +19,11 @@ export default function App() {
       <StatusBar style="auto" />
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={LandingPage} options={{ title: 'StressLess' }}/>
-          <Stack.Screen name="UserInput" component={UserInput} options={{ title: 'User Input' }}/>
-          <Stack.Screen name="Suggestions" component={Suggestions} options={{ title: 'Suggestions' }}/>
-          <Stack.Screen name="Report" component={Report} options={{ title: 'Report' }}/>
-          <Stack.Screen name="Notification" component={Notification} options={{ title: 'Notifications' }}/>
+          <Stack.Screen name="Home" component={LandingPage} />
+          <Stack.Screen name="UserInput" component={UserInput} />
+          <Stack.Screen name="Suggestions" component={Suggestions} />
+          <Stack.Screen name="Report" component={Report} />
+          <Stack.Screen name="Notification" component={Notification} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
