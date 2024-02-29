@@ -11,21 +11,17 @@ export default function LandingPage({ navigation }) {
           onPress={() => navigation.navigate("UserInput")}
           style={styles.button}
         />
-        <Button
-          title="Suggestions"
-          onPress={() => navigation.navigate("Suggestions")}
-          style={styles.button}
-        />
+
         <Button
           title="Stress Report"
           onPress={() => navigation.navigate("Report")}
           style={styles.button}
         />
-        <Button
+        {/* <Button
           title="Notification Test"
           onPress={() => navigation.navigate("Notification")}
           style={styles.button}
-        />
+        /> */}
       </View>
     </View>
   );
