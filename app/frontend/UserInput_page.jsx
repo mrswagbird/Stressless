@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     marginBottom: 16,
-    width: 500,
   },
   heading: {
     fontSize: 24,
