@@ -34,7 +34,6 @@ export default function UserInput() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <View style={styles.container}>
-      <Text style={styles.heading}>User Input</Text>
       <Text style={styles.description}>
         To assist our stress prediction model, please provide the following details. Please note that this input is for demonstration purposes only.
       </Text>

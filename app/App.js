@@ -18,11 +18,11 @@ export default function App() {
       <StatusBar style="auto" />
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={LandingPage} />
-          <Stack.Screen name="User Input" component={UserInput} />
-          <Stack.Screen name="Suggestions" component={Suggestions} />
-          <Stack.Screen name="Report" component={Report} />
-          <Stack.Screen name="Notification" component={Notification} />
+          <Stack.Screen name="Home" component={LandingPage} options={{ title: 'StressLess' }}/>
+          <Stack.Screen name="UserInput" component={UserInput} options={{ title: 'User Input' }}/>
+          <Stack.Screen name="Suggestions" component={Suggestions} options={{ title: 'Suggestions' }}/>
+          <Stack.Screen name="Report" component={Report} options={{ title: 'Report' }}/>
+          <Stack.Screen name="Notification" component={Notification} options={{ title: 'Notifications' }}/>
         </Stack.Navigator>
       </NavigationContainer>
     </View>

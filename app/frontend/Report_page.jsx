@@ -3,7 +3,6 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function Report() {
     return (
         <View style={styles.container}>
-        <Text style={styles.heading}>Welcome to the Stress Report Page</Text>
         <Text>
             This is the stress report page for the app. It will contain a brief
             description of the app and a button to start the app.
