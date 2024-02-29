@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+// import { Picker } from '@react-native-picker/picker';
+import SelectDropdown from 'react-native-select-dropdown';
 import { LineChart } from 'react-native-chart-kit';
 import moment from 'moment';
 import reportData20240124 from './Report_data/report_preprocessed_anh_20240124.json';
@@ -107,9 +108,10 @@ export default function Report() {
       '20240124', '20240125', '20240126', '20240127', '20240128', '20240129', '20240130', '20240131', '20240201', '20240202', '20240203', '20240204', '20240205', '20240206', '20240207', '20240208' 
     ];
       availableDates.reverse();
-    return availableDates.map((date) => (
-      <Picker.Item key={date} label={moment(date, 'YYYYMMDD').format('YYYY-MM-DD')} value={date} />
-    ));
+      return availableDates.map((date) => ({
+        label: moment(date, 'YYYYMMDD').format('YYYY-MM-DD'),
+        value: date,
+      }));
   };
 
   return (
@@ -118,13 +120,14 @@ export default function Report() {
       <Text>
         Please select a date to see your stress levels throughout the day.
       </Text>
-      <Picker
-        style={styles.picker}
-        selectedValue={selectedDate}
-        onValueChange={(itemValue) => setSelectedDate(itemValue)}
-      >
-        {renderDropdownOptions()}
-      </Picker>
+      <SelectDropdown
+        data={renderDropdownOptions()}
+        onSelect={(selectedItem, index) => setSelectedDate(selectedItem.value)}
+        defaultButtonText={moment(selectedDate, 'YYYYMMDD').format('YYYY-MM-DD')}
+        buttonStyle={styles.picker}
+        buttonTextAfterSelection={(selectedItem, index) => selectedItem.label}
+        rowTextForSelection={(item, index) => item.label}
+      />
       <LineChart
         data={chartData}
         width={screenWidth}
