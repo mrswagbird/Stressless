@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
 
 export default function LandingPage({ navigation }) {
   return (
@@ -8,17 +8,22 @@ export default function LandingPage({ navigation }) {
       <View style={styles.buttonContainer}>
         <Button
           title="User Input"
-          onPress={() => navigation.navigate('UserInput')}
+          onPress={() => navigation.navigate("UserInput")}
           style={styles.button}
         />
         <Button
           title="Suggestions"
-          onPress={() => navigation.navigate('Suggestions')}
+          onPress={() => navigation.navigate("Suggestions")}
           style={styles.button}
         />
         <Button
           title="Stress Report"
-          onPress={() => navigation.navigate('Report')}
+          onPress={() => navigation.navigate("Report")}
+          style={styles.button}
+        />
+        <Button
+          title="Notification Test"
+          onPress={() => navigation.navigate("Notification")}
           style={styles.button}
         />
       </View>
@@ -29,18 +34,17 @@ export default function LandingPage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 16,
   },
   heading: {
     fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
+    fontWeight: "bold",
+    marginBottom: 100,
   },
-    buttonContainer: {
-    },
+  buttonContainer: {},
   button: {
     marginTop: 10,
-    },
+  },
 });
