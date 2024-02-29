@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { View, Text, TextInput, StyleSheet, Button, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
+import * as tf from "@tensorflow/tfjs"
+import {bundleResourceIO} from "@tensorflow/tfjs-react-native";
 
 export default function UserInput() {
   const [heartRate, setHeartRate] = useState("");
   const [sleepDuration, setSleepDuration] = useState('');
-  const [activity, setActivity] = useState(''); 
+  const [activity, setActivity] = useState('');
+  const [model, setModel] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      await tf.ready();
+      const modelJson = require('../model/model.json');
+      const modelWeights = require('../model/group1-shard1of1.bin');
+
+      const model = await tf.loadLayersModel(bundleResourceIO(modelJson, [modelWeights]));
+
+      setModel(model);
+      console.warn("TF now ready!")
+    }
+    prepare();
+  }, [])
 
   const handleSubmit = () => {
     // Calculate a random stress level between 0 and 5 (as a placeholder)
