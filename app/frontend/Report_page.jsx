@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      height: 300,
+      maxHeight: 400,
     },
     lineChart: {
       flex: 1,
