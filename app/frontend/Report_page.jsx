@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, Picker } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { LineChart } from 'react-native-chart-kit';
 import moment from 'moment';
 import reportData20240124 from './Report_data/report_preprocessed_anh_20240124.json';
