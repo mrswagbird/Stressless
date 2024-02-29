@@ -92,6 +92,7 @@ export default function UserInput({ navigation }) {
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Activity:</Text>
           <SelectDropdown
+          style={styles.picker}
             data={activityOptions}
             onSelect={(selectedItem) => setActivity(selectedItem)}
             buttonTextAfterSelection={(selectedItem) => selectedItem}
@@ -147,6 +148,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginVertical: 8,
+    borderRadius: 10,
   },
   label: {
     fontSize: 18,
@@ -158,12 +160,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 8,
     width: 200,
+    borderRadius: 10,
+    borderColor: "",
+    backgroundColor: "bababa",
+    shadowColor: '#d3d3d3',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.34,
+    shadowRadius: 2,
   },
   picker: {
     height: 40,
     width: 200,
+    borderRadius: 10,
   },
   submitButton: {
-    // To Do
+    width: 200,
+    borderRadius: 10,
   },
 });
