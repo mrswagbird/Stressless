@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Linking, Button } from "react-native";
 import * as Contacts from "expo-contacts";
 export default function Suggestions() {
-  const openYoutube = () => {
+  const openYoutubeMusic = () => {
     console.log("youtube");
     Linking.openURL("https://www.youtube.com/watch?v=S4hLxf02Ong").catch(
       (err) => {
@@ -15,6 +15,22 @@ export default function Suggestions() {
       }
     );
   };
+
+  const openYoutubeYoga = () => {
+    console.log("youtube");
+    Linking.openURL("https://www.youtube.com/watch?v=0tjssNmUEH4").catch(
+      (err) => {
+        console.error(
+          "Failed to open YouTube app. Opening in browser instead.",
+          err
+        );
+        // Fallback to opening in the browser
+        Linking.openURL("https://www.youtube.com/watch?v=0tjssNmUEH4");
+      }
+    );
+  };
+
+
   const open9gag = () => {
     console.log("9gag");
     Linking.openURL("https://9gag.com/");
@@ -71,8 +87,14 @@ export default function Suggestions() {
       <Text style={styles.heading}>Do something to relax</Text>
       <View style={styles.buttonContainer}>
         <Button
+          // title="Take some time to breath out!"
+          title="Listen to some relaxing music!"
+          onPress={openYoutubeMusic}
+          style={styles.button}
+        />
+        <Button
           title="Take some time to breath out!"
-          onPress={openYoutube}
+          onPress={openYoutubeYoga}
           style={styles.button}
         />
         <Button
@@ -93,7 +115,7 @@ export default function Suggestions() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     padding: 16,
   },
