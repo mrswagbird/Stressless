@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  Button,
-  Alert,
-  Keyboard,
-  TouchableWithoutFeedback,
-} from "react-native";
-import SelectDropdown from "react-native-select-dropdown";
-import * as tf from "@tensorflow/tfjs";
-// import { bundleResourceIO } from "@tensorflow/tfjs-react-native";
+import React, {useEffect, useState} from 'react';
+import {Alert, Button, Keyboard, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
+import SelectDropdown from 'react-native-select-dropdown'
+import * as tf from "@tensorflow/tfjs"
+import {bundleResourceIO} from "@tensorflow/tfjs-react-native";
+import * as sk from 'scikitjs';
+import * as preprocessing from "scikitjs";
+
+
 
 export default function UserInput({ navigation }) {
   const [heartRate, setHeartRate] = useState("");
@@ -34,24 +29,71 @@ export default function UserInput({ navigation }) {
       setModel(model);
       console.warn("TF now ready!");
     }
+
     prepare();
-  }, []);
+  }, [])
 
   const predict = () => {
-    return 3;
-  };
+    sk.setBackend(tf)
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+    const inputScaler = [[currentHour, parseFloat(heartRate), parseFloat(sleepDuration)]];
+    //const inputScaler = [[10, 76.5, 8.0]];
+    console.log(inputScaler);
+
+    const StandardScaler = preprocessing.StandardScaler;
+    const scaler = new StandardScaler();
+    scaler.mean = [14.55020289, 105.930505, 7.42024268];
+    scaler.scale = [3.85559805, 30.29517411, 1.16461952];
+
+    const scaled = scaler.fitTransform(inputScaler);
+    const syncScaler = scaled.arraySync();
+
+    /*['activity_Chill' 'activity_Hobby' 'activity_Social' 'activity_Uni' 'activity_Work']*/
+
+    let cat = [];
+    switch (activity) {
+      case 'Uni':
+        cat = [0, 0, 0, 1, 0];
+        break;
+      case 'Work':
+        cat = [0, 0, 0, 0, 1];
+        break;
+      case 'Hobby':
+        cat = [0, 1, 0, 0, 0];
+        break;
+      case 'Social':
+        cat = [0, 0, 1, 0, 0];
+        break;
+      case 'Other':
+        cat = [1, 0, 0, 0, 0];
+        break;
+    }
+
+
+    // Combine scaled numerical features and one-hot encoded categorical features
+    const processed = syncScaler.map(row => row.concat(cat));
+    const preprocessedInput = tf.tensor2d(processed);
+
+
+    const result = model.predict(preprocessedInput);
+    const predictedLabels = result.argMax(1).dataSync();
+
+    return predictedLabels;
+  }
+
+
 
   const handleSubmit = () => {
-    // Calculate a random stress level between 0 and 5 (as a placeholder)
     if (!heartRate || !sleepDuration || !activity) {
       Alert.alert("All fields must be filled before submitting.");
     } else {
       const stresslevel = predict();
-
+      console.log(stresslevel);
       if (stresslevel >= 2) {
         Alert.alert(
           "Confirmation",
-          `Your stress level is  ${stresslevel}, you need some relaxation`,
+          `Your stress level is ${stresslevel}, you need some relaxation`,
 
           [
             {
