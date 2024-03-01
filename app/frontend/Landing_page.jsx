@@ -1,8 +1,11 @@
 import React from "react";
-import { View, Text, Button, StyleSheet, Image } from "react-native";
+import { View, Text, Button, StyleSheet, Image, ImageBackground } from "react-native";
+
+const backgroundImage = require("../assets/Background1.jpg");
 
 export default function LandingPage({ navigation }) {
   return (
+    <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
     <View style={styles.container}>
       <Text style={styles.heading}>Welcome to StressLess</Text>
       <View style={styles.buttonContainer}>
@@ -34,6 +37,7 @@ export default function LandingPage({ navigation }) {
         /> 
       </View> */}
     </View>
+    </ImageBackground>
   );
 }
 
@@ -43,6 +47,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover", // or "stretch"
   },
   heading: {
     fontSize: 24,
