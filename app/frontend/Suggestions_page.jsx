@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import { Linking, Button } from "react-native";
+import { Linking, Button, Alert } from "react-native";
 import * as Contacts from "expo-contacts";
 
 export default function Suggestions() {
@@ -45,41 +45,94 @@ export default function Suggestions() {
     return arr[randomIndex];
   };
 
+  // const callContact = async () => {
+  //   // Ask for permission to access contacts
+  //   const { status } = await Contacts.requestPermissionsAsync();
+
+  //   if (status === "granted") {
+  //     // Retrieve the user's contacts
+  //     const { data } = await Contacts.getContactsAsync({
+  //       fields: [Contacts.Fields.PhoneNumbers],
+  //     });
+
+  //     if (data.length > 0) {
+  //       const contact = getRandomElement(data);
+  //       console.log(data);
+
+  //       if (contact.phoneNumbers && contact.phoneNumbers.length > 0) {
+  //         // Get the first phone number of the contact
+  //         const phoneNumber = contact.phoneNumbers[0].number;
+
+  //         // Construct the tel: URL
+  //         const dialerUrl = `tel:${phoneNumber}`;
+
+  //         // Open the dialer using Linking module
+  //         Linking.openURL(dialerUrl).catch((error) =>
+  //           console.error("Error calling contact:", error)
+  //         );
+  //       } else {
+  //         console.log("Selected contact does not have a phone number.");
+  //       }
+  //     } else {
+  //       console.log("No contacts found.");
+  //     }
+  //   } else {
+  //     console.log("Permission to access contacts was denied.");
+  //   }
+  // };
+
   const callContact = async () => {
-    // Ask for permission to access contacts
-    const { status } = await Contacts.requestPermissionsAsync();
-
-    if (status === "granted") {
-      // Retrieve the user's contacts
-      const { data } = await Contacts.getContactsAsync({
-        fields: [Contacts.Fields.PhoneNumbers],
-      });
-
-      if (data.length > 0) {
-        const contact = getRandomElement(data);
-        console.log(data);
-
-        if (contact.phoneNumbers && contact.phoneNumbers.length > 0) {
-          // Get the first phone number of the contact
-          const phoneNumber = contact.phoneNumbers[0].number;
-
-          // Construct the tel: URL
-          const dialerUrl = `tel:${phoneNumber}`;
-
-          // Open the dialer using Linking module
-          Linking.openURL(dialerUrl).catch((error) =>
-            console.error("Error calling contact:", error)
+    try {
+      const { status } = await Contacts.requestPermissionsAsync();
+  
+      if (status === "granted") {
+        // Retrieve the user's contacts
+        const { data } = await Contacts.getContactsAsync({
+          fields: [Contacts.Fields.PhoneNumbers, Contacts.Fields.Name], // Include Name field
+        });
+  
+        if (data.length > 0) {
+          const contact = getRandomElement(data);
+          const contactName = contact.name;
+          
+          // Show an alert with the name of the contact
+          Alert.alert(
+            "Calling",
+            `Calling ${contactName}...`,
+            [
+              {
+                text: "Cancel",
+                style: "cancel",
+              },
+              {
+                text: "OK",
+                onPress: () => {
+                  // Get the phone number and call the contact
+                  if (contact.phoneNumbers && contact.phoneNumbers.length > 0) {
+                    const phoneNumber = contact.phoneNumbers[0].number;
+                    const dialerUrl = `tel:${phoneNumber}`;
+                    Linking.openURL(dialerUrl).catch((error) =>
+                      console.error("Error calling contact:", error)
+                    );
+                  } else {
+                    console.log("Selected contact does not have a phone number.");
+                  }
+                },
+              },
+            ],
+            { cancelable: false }
           );
         } else {
-          console.log("Selected contact does not have a phone number.");
+          console.log("No contacts found.");
         }
       } else {
-        console.log("No contacts found.");
+        console.log("Permission to access contacts was denied.");
       }
-    } else {
-      console.log("Permission to access contacts was denied.");
+    } catch (error) {
+      console.error("Error calling contact:", error);
     }
   };
+  
 
   // Call the function to prompt the user to select a contact and make the call
 
