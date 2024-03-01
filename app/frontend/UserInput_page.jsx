@@ -43,8 +43,8 @@ export default function UserInput({ navigation }) {
 
     const StandardScaler = preprocessing.StandardScaler;
     const scaler = new StandardScaler();
-    scaler.mean = [14.55020289, 105.930505, 7.42024268];
-    scaler.scale = [3.85559805, 30.29517411, 1.16461952];
+    scaler.mean = [13.96924881, 104.44589657,   7.28357807];
+    scaler.scale = [ 3.37080032, 29.23209316,  1.37569353];
 
     const scaled = scaler.fitTransform(inputScaler);
     const syncScaler = scaled.arraySync();
@@ -140,8 +140,8 @@ export default function UserInput({ navigation }) {
             onSelect={(selectedItem) => setActivity(selectedItem)}
             buttonTextAfterSelection={(selectedItem) => selectedItem}
             rowTextForSelection={(item) => item}
-            dropdownStyle={styles.dropdownStyle} 
-            dropdownTextStyle={styles.dropdownTextStyle} 
+            dropdownStyle={styles.dropdownStyle}
+            dropdownTextStyle={styles.dropdownTextStyle}
           />
         </View>
         <View style={styles.inputContainer}>
@@ -179,7 +179,7 @@ export default function UserInput({ navigation }) {
           onPress={handleSubmit}
         /> */}
 
-        <TouchableOpacity onPress={handleSubmit} style={styles.button}> 
+        <TouchableOpacity onPress={handleSubmit} style={styles.button}>
           <Text style={styles.textbutton}>Submit</Text>
         </TouchableOpacity >
 
