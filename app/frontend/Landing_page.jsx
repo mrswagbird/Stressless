@@ -1,13 +1,15 @@
 import React from "react";
 import { View, Text, Button, StyleSheet, Image, ImageBackground } from "react-native";
 
-const backgroundImage = require("../assets/Background1.jpg");
+const backgroundImage = require("../assets/Background3.jpg");
 
 export default function LandingPage({ navigation }) {
   return (
     <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-    <View style={styles.container}>
+    <View style={styles.headingcontainer}>
       <Text style={styles.heading}>Welcome to StressLess</Text>
+    </View>
+    <View style={styles.container}>
       <View style={styles.buttonContainer}>
         <Button
           title="User Input"
@@ -42,20 +44,35 @@ export default function LandingPage({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  headingcontainer: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingTop: 100,
+    paddingBottom:16,
+    paddingLeft:16,
+    paddingRight:16,
+  },
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flext-start",
     alignItems: "center",
-    padding: 16,
+    paddingBottom: 250,
+    paddingTop: 16,
   },
   backgroundImage: {
     flex: 1,
     resizeMode: "cover", // or "stretch"
   },
   heading: {
-    fontSize: 24,
+    fontSize: 28,
+    color: "#242124",
     fontWeight: "bold",
-    marginBottom: 100,
+    marginBottom: 10,
+    shadowColor: '#d3d3d3',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.34,
+    shadowRadius: 2,
   },
   buttonContainer: {
     width:'85%',

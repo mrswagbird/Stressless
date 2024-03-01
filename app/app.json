@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "app",
+    "name": "StressLess",
     "slug": "pushnotification",
     "version": "1.0.0",
     "permissions": ["internet"],
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/relaxed.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/relaxed.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,11 +16,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "icon": "./assets/relaxed.png"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/relaxed.png",
         "backgroundColor": "#ffffff"
       }
     },

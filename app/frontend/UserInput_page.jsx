@@ -27,7 +27,7 @@ export default function UserInput({ navigation }) {
       );
       setTfReady(true);
       setModel(model);
-      console.warn("TF now ready!");
+      //console.warn("TF now ready!");
     }
 
     prepare();
